@@ -1,11 +1,13 @@
 # Safety Guard Plugin for Oh My Zsh
 
 ## 🚧 Purpose
+
 A protective Zsh plugin that intercepts Kubernetes CLI commands (`kubectl`) and prevents accidental changes to **production environments**. It detects the active context and prompts for confirmation unless explicitly overridden with a safe flag.
 
 ---
 
 ## ✨ Features
+
 - Detects "prod" environments based on `kubectl config current-context`
 - Warns users before executing potentially destructive commands
 - Allows bypassing prompts via a custom `--safe-force` flag
@@ -15,6 +17,7 @@ A protective Zsh plugin that intercepts Kubernetes CLI commands (`kubectl`) and 
 ---
 
 ## 🧩 Supported Tools (So Far)
+
 - ✅ `kubectl`
 - (Planned) `helm`, `argocd`, `aws`
 
@@ -23,23 +26,41 @@ A protective Zsh plugin that intercepts Kubernetes CLI commands (`kubectl`) and 
 ## 📁 Installation
 
 ### 1. Clone into your custom plugin directory:
+
 ```bash
-git clone https://github.com/mtahle/safety-guard.git ~/.oh-my-zsh/custom/plugins/safety-guard
+git clone https://github.com/mtahle/kubectl-safety-guard.git ~/.oh-my-zsh/custom/plugins/safety-guard
 ```
 
 ### 2. Enable the plugin in your `.zshrc`:
+
 ```zsh
 plugins=(... safety-guard)
 ```
 
 ### 3. Restart Zsh:
+
 ```bash
 exec zsh
 ```
 
+###### Note: if you don't use ozsh but only ZSH, use the commands below
+
+```bash
+git clone https://github.com/mtahle/kubectl-safety-guard.git ~/.safety-guard
+```
+
+```bash
+source ~/.safety-guard/config.zsh
+source ~/.safety-guard/functions/wrap_kubectl.zsh
+```
+
+```bash
+exec zsh
+```
 ---
 
 ## ⚙️ Configuration
+
 Edit the file: `~/.oh-my-zsh/custom/plugins/safety-guard/config.zsh`
 
 ```zsh
@@ -60,16 +81,20 @@ export SAFETY_FORCE_FLAG="--safe-force"
 ## 💡 Usage
 
 Run any `kubectl` command:
+
 ```bash
 kubectl apply -f my.yaml
 ```
+
 If you're in a prod cluster, you'll see:
+
 ```
 ⚠️  You are about to run a command on a PRODUCTION cluster: [prod-cluster]
 Are you sure? Type 'yes' to continue:
 ```
 
 Bypass with:
+
 ```bash
 kubectl apply -f my.yaml --safe-force
 ```
@@ -77,6 +102,7 @@ kubectl apply -f my.yaml --safe-force
 ---
 
 ## 🧪 Roadmap
+
 - [ ] Helm support
 - [ ] ArgoCD support
 - [ ] AWS CLI detection
@@ -85,5 +111,5 @@ kubectl apply -f my.yaml --safe-force
 ---
 
 ## 🛡️ License
-MIT
 
+MIT
