@@ -24,7 +24,7 @@ A protective Zsh plugin that intercepts Kubernetes CLI commands (`kubectl`) and 
 
 ### 1. Clone into your custom plugin directory:
 ```bash
-git clone https://github.com/<your-username>/safety-guard.git ~/.oh-my-zsh/custom/plugins/safety-guard
+git clone https://github.com/mtahle/safety-guard.git ~/.oh-my-zsh/custom/plugins/safety-guard
 ```
 
 ### 2. Enable the plugin in your `.zshrc`:
